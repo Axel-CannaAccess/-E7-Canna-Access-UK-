@@ -45,4 +45,21 @@ def ask_cohere(query, context):
         print(e)
         return "Sorry hooman, no dice"
 
+def get_cohere_prompt(query, context):
+    return f"""given a question and a bunch of snippets context try to answer the question using the context. If you can't please say 'Sorry hooman, no dice'.
+question: {query}
+context: {context}
+answer: """
+
+def ask_cohere(query, context):
+    try:
+        return cohere_client.generate(prompt=get_cohere_prompt(query, context))[
+            0
+        ].text
+    except Exception as e:
+        print(
+            "Cohere call failed for query {} and context {}".format(query, context)
+        )
+        print(e)
+        return "Sorry hooman, no dice"
 
