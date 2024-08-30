@@ -10,3 +10,6 @@ os.environ["OPENAI_API_KEY"] = "YOUR OPENAI API KEY"
 yr = YouRetriever()
 model = "gpt-3.5-turbo-16k"
 qa = RetrievalQA.from_chain_type(llm=ChatOpenAI(model=model), chain_type="stuff", retriever=yr)
+
+qa.run("how was the New York City pinball ban lifted?")
+
